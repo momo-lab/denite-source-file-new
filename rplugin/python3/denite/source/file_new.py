@@ -17,7 +17,7 @@ class Source(Base):
     def on_init(self, context):
         directory = context['args'][0] if len(
             context['args']) > 0 else context['path']
-        context['__dir'] = self.vim.call('expand', directory)
+        context['__dir'] = os.path.relpath(self.vim.call('expand', directory))
         context['__prompt'] = "[new file]"
 
     def gather_candidates(self, context):

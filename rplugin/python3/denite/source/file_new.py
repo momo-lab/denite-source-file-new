@@ -3,9 +3,7 @@
 # License: MIT license
 
 from .base import Base
-import os.path
-import glob
-
+import os
 
 class Source(Base):
 
@@ -20,7 +18,7 @@ class Source(Base):
         directory = context['args'][0] if len(
             context['args']) > 0 else context['path']
         directory = self.vim.call('expand', directory)
-        context['__candidates'] = glob.glob(directory + '/*')
+        context['__candidates'] = os.listdir(directory)
 
     def gather_candidates(self, context):
         candidates = context['__candidates']

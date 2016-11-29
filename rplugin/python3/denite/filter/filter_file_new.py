@@ -3,6 +3,7 @@
 # License: MIT license
 
 from .base import Base
+from os.path import join
 
 class Filter(Base):
 
@@ -22,4 +23,4 @@ class Filter(Base):
 
         return [{
                 'word': '[new file] ' + context['input'],
-                'action__path': context['input'] }]
+                'action__path': join(context['__dir'], context['input']) }]

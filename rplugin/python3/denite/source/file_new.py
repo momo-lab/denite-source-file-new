@@ -18,6 +18,7 @@ class Source(Base):
         directory = context['args'][0] if len(
             context['args']) > 0 else context['path']
         context['__dir'] = self.vim.call('expand', directory)
+        context['__prompt'] = "[new file]"
 
     def gather_candidates(self, context):
         return list(map(

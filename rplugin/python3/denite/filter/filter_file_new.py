@@ -22,5 +22,5 @@ class Filter(Base):
                 return []
 
         return [{
-                'word': '[new file] ' + context['input'],
+                'word': "%s %s" % (context['__prompt'], context['input']),
                 'action__path': join(context['__dir'], context['input']) }]

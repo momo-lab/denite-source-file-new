@@ -2,10 +2,7 @@
 # AUTHOR: momotaro <momotaro.n@gmail.com>
 # License: MIT license
 
-import re
 from .base import Base
-from denite.util import escape_fuzzy, split_input, convert2fuzzy_pattern
-
 
 class Filter(Base):
 

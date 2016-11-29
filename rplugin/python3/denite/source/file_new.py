@@ -17,13 +17,9 @@ class Source(Base):
     def on_init(self, context):
         directory = context['args'][0] if len(
             context['args']) > 0 else context['path']
-        directory = self.vim.call('expand', directory)
-        context['__candidates'] = os.listdir(directory)
+        context['__dir'] = self.vim.call('expand', directory)
 
     def gather_candidates(self, context):
-        candidates = context['__candidates']
         return list(map(
-            lambda candidate: {
-                'word': os.path.basename(candidate)
-            }, candidates))
-
+                lambda x: { 'word': os.path.basename(x) },
+                os.listdir(context['__dir'])))

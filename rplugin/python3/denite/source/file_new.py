@@ -21,6 +21,5 @@ class Source(Base):
         context['__prompt'] = "[new file]"
 
     def gather_candidates(self, context):
-        return list(map(
-                lambda x: { 'word': os.path.basename(x) },
-                os.listdir(context['__dir'])))
+        return [{ 'word': os.path.basename(path) }
+                for path in os.listdir(context['__dir'])]

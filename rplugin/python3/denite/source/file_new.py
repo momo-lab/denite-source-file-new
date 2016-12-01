@@ -18,8 +18,9 @@ class Source(Base):
         directory = context['args'][0] if len(
             context['args']) > 0 else context['path']
         context['__dir'] = os.path.relpath(self.vim.call('expand', directory))
+        context['__files'] = [os.path.basename(path)
+                              for path in os.listdir(context['__dir'])]
         context['__prompt'] = "[new file]"
 
     def gather_candidates(self, context):
-        return [{ 'word': os.path.basename(path) }
-                for path in os.listdir(context['__dir'])]
+        return [{ 'word': '___dummy___'}]

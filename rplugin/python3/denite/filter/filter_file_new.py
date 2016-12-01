@@ -17,8 +17,8 @@ class Filter(Base):
         if context['input'] == '':
             return []
 
-        for candidate in context['candidates']:
-            if candidate['word'] == context['input']:
+        for candidate in context['__files']:
+            if candidate == context['input']:
                 return []
 
         return [{

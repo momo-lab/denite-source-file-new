@@ -17,10 +17,12 @@ class Source(Base):
     def on_init(self, context):
         directory = context['args'][0] if len(
             context['args']) > 0 else context['path']
-        context['__dir'] = os.path.relpath(self.vim.call('expand', directory))
-        context['__files'] = [os.path.basename(path)
-                              for path in os.listdir(context['__dir'])]
+        if os.path.isdir(directory):
+            context['__dir'] = os.path.relpath(
+                    self.vim.call('expand', directory), context['path'])
+            context['__files'] = [os.path.basename(path)
+                                  for path in os.listdir(context['__dir'])]
         context['__prompt'] = "[new file]"
 
     def gather_candidates(self, context):
-        return [{ 'word': '___dummy___'}]
+        return [{ 'word': '___dummy___'}] if '__dir' in context else []

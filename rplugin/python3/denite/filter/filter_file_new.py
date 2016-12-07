@@ -17,6 +17,9 @@ class Filter(Base):
         if context['input'] == '':
             return []
 
+        if len(context['candidates']) == 0:
+            return []
+
         for candidate in context['__files']:
             if candidate == context['input']:
                 return []
